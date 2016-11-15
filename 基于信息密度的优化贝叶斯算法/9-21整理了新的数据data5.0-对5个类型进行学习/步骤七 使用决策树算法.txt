@@ -1,0 +1,25 @@
+train_feature = train_total(:,1:41);
+ train_class = train_total(:,42);
+ predict=treefit(train_feature,train_class);
+ test_feature = test_data(:,1:41);
+ test_class = test_data(:,42);
+predict_label   =       predict(test_feature);
+accuracy         =       length(find(predict_label == test_class))/length(test_class)*100
+
+
+
+%%%%%%%%%下面不用了
+%%%%% indexing requires a single array of predictor values.  参数应该只有1个
+ tree_result =  t(test_feature);
+
+for  n=1:test_data_hangshu
+     tree_yuce_shiji(n) = tree_result(n) - test_data(n,42);
+end
+
+result_tree_yuce_jieguo = [];
+ result_tree_yuce_jieguo = [tree_yuce_shiji',tree_result,test_data(:,42)];
+
+
+tree_zhunquedu0 = [];
+tree_zhunquedu0 =find(tree_yuce_shiji== 0);
+size(tree_zhunquedu0)

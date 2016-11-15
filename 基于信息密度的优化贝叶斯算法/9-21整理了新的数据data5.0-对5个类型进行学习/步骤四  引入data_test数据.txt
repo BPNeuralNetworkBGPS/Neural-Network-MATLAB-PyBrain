@@ -1,0 +1,5 @@
+test_data=xlsread('C:\Users\Administrator\Desktop\data_total5.0.xlsx','data_test');
+
+test_data_hanglie = size(test_data);
+test_data_hangshu=test_data_hanglie(1,1);  %测试数据的行数
+test_data_lieshu=test_data_hanglie(1,2);       %测试数据的列数

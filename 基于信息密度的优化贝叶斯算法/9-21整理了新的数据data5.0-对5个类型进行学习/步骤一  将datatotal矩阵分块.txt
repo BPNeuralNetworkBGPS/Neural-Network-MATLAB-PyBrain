@@ -1,0 +1,135 @@
+
+
+%train_total=xlsread('C:\Users\Administrator\Desktop\论文数据\data5.0\data_total5.0.xlsx','data_total');
+train_total=xlsread('C:\Users\Administrator\Desktop\data_total5.0.xlsx','data_total');
+%%%%%%%%%%%%%%%%%%%%%功能求出矩阵train_total中A列中各个元素出现的次数%%%%%%
+hanglie = size(train_total)
+ hangshu=hanglie(1,1)  %总数据的行数
+ lieshu=hanglie(1,2)       %总数据的列数
+
+
+A=train_total(:,42)
+Azhongleixing=unique(A)
+
+
+hanglieAlei= size(Azhongleixing)
+ hangshuAlei=hanglieAlei(1,1)
+ lieshuAlei=hanglieAlei(1,2)
+
+%%%%%%%%%%%%%%arr存储A中各个类型出现的次数%%%%%%%%%%%
+arr=[];                
+for m=1: hangshuAlei
+     j=0
+    for i=1:hangshu
+        if train_total(i,42) == Azhongleixing(m,1)
+         j=j+1;
+     end
+        arr(m)=j
+    end
+end
+
+%%%%%%%%%%%%%%leihang存储A中各个类型出现的行数范围%%%%%%%%%%%
+
+leihang1=[];
+leihang2=[];
+leihang3=[];
+leihang4=[];
+leihang5=[];
+
+
+leihang1=find(A== Azhongleixing(1,1))
+leihang2=find(A== Azhongleixing(2,1))
+leihang3=find(A== Azhongleixing(3,1))
+leihang4=find(A== Azhongleixing(4,1))
+leihang5=find(A== Azhongleixing(5,1))
+
+
+%leihang1min=min(leihang1)
+%leihang1max=max(leihang1)
+%leihang2min=min(leihang2)
+%leihang2max=max(leihang2)
+%leihang3min=min(leihang3)
+%leihang3max=max(leihang3)
+%leihang4min=min(leihang4)
+%leihang4max=max(leihang4)
+%leihang5min=min(leihang5)
+%leihang5max=max(leihang5)
+
+leihang1_hanglie = size(leihang1)
+leihang1_hangshu=leihang1_hanglie(1,1)  %leihang1_的行数
+leihang1_lieshu=leihang1_hanglie(1,2)       %leihang1_的列数
+
+
+train_data1=[];
+
+for i=1:leihang1_hangshu
+    n=leihang1(i,1);
+    train_data1=[train_data1;train_total(n,:)];
+end
+
+
+leihang2_hanglie = size(leihang2)
+leihang2_hangshu=leihang2_hanglie(1,1)  %leihang1_的行数
+leihang2_lieshu=leihang2_hanglie(1,2)       %leihang1_的列数
+
+
+train_data2=[];
+
+for i=1:leihang2_hangshu
+    n=leihang2(i,1);
+    train_data2=[train_data2;train_total(n,:)];
+end
+
+
+leihang3_hanglie = size(leihang3)
+leihang3_hangshu=leihang3_hanglie(1,1)  %leihang1_的行数
+leihang3_lieshu=leihang3_hanglie(1,2)       %leihang1_的列数
+
+
+train_data3=[];
+
+for i=1:leihang3_hangshu
+    n=leihang3(i,1);
+    train_data3=[train_data3;train_total(n,:)];
+end
+
+
+leihang4_hanglie = size(leihang4)
+leihang4_hangshu=leihang4_hanglie(1,1)  %leihang1_的行数
+leihang4_lieshu=leihang4_hanglie(1,2)       %leihang1_的列数
+
+
+train_data4=[];
+
+for i=1:leihang4_hangshu
+    n=leihang4(i,1);
+    train_data4=[train_data4;train_total(n,:)];
+end
+
+
+leihang5_hanglie = size(leihang5)
+leihang5_hangshu=leihang5_hanglie(1,1)  %leihang1_的行数
+leihang5_lieshu=leihang5_hanglie(1,2)       %leihang1_的列数
+
+
+train_data5=[];
+
+for i=1:leihang5_hangshu
+    n=leihang5(i,1);
+    train_data5=[train_data5;train_total(n,:)];
+end
+
+%%%%%%%%%%%%%%%%%%%%%%正确分类train_data1,2,3,4,5-----------------9-21
+
+
+
+%train_data1=[];
+%train_data1=train_total(leihang1min:leihang1max,:);
+%train_data2=[];
+%train_data2=train_total(leihang2min:leihang2max,:);
+%train_data3=[];
+%train_data3=train_total(leihang3min:leihang3max,:);
+%train_data4=[];
+%train_data4=train_total(leihang4min:leihang4max,:);
+%train_data5=[];
+%train_data5=train_total(leihang5min:leihang5max,:);

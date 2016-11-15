@@ -1,0 +1,85 @@
+
+%%%%%%%%把 yuce_shiji(n) 、 test_data_jieguo_hangshu(n) 、 test_data(n,42)
+%%%三个数据放在一个矩阵中观察
+result_yuce_jieguo = [];
+ result_yuce_jieguo = [yuce_shiji',test_data_jieguo_hangshu',test_data(:,42)]
+
+
+%%%%正向误差
+size(test_data)
+
+zhunquedu0 = [];
+zhunquedu0 =find(yuce_shiji== 0);
+size(zhunquedu0)
+
+
+%%%%%%%%%%%%%查出贝叶斯算法分类错误的test_data的行值
+cuowu_datahangzhi = [];
+cuowu_datahangzhi  =find(yuce_shiji ~= 0);
+
+cuowu_datahangzhi_hanglie  = size(cuowu_datahangzhi );
+cuowu_datahangzhi_hang = cuowu_datahangzhi_hanglie(1,1);
+cuowu_datahangzhi_lie = cuowu_datahangzhi_hanglie(1,2);
+
+%%%%%%%%%%%%%%%%%%%%%error_data 是贝叶斯算法分类错误的结果
+
+error_data =[];  
+for  i=1:cuowu_datahangzhi_lie
+    error_data(i,:) = test_data(cuowu_datahangzhi(i),:);
+end
+    
+error_data_feature = error_data(:,1:41);
+error_data_class = error_data(:,42);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%使用决策树算法模型
+
+error_data_result=predict(error_data_feature);%%%先运行步骤七的决策树算法
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%对error_data使用决策树算法，查看决策树算法的结果
+error_data_hanglie  = size(error_data);
+error_data_hangshu =error_data_hanglie(1,1);
+error_data_lieshu = error_data_hanglie(1,2);
+
+
+for  n=1:error_data_hangshu
+     error_data_tree_yuce_shiji(n) = error_data_result(n) - error_data(n,42);
+end
+
+result_error_data_tree_yuce_jieguo = [];
+ result_error_data_tree_yuce_jieguo = [error_data_tree_yuce_shiji',error_data_result,error_data(:,42)];
+
+
+error_data_tree_zhunquedu0 = [];
+error_data_tree_zhunquedu0 =find(error_data_tree_yuce_shiji== 0);
+size(error_data_tree_zhunquedu0)
+
+
+%ans =    决策树对bayes算法已错误数据进行再分类
+
+%     1   370  决策树分类结果
+
+% 370/416   416是bayes算法已错误数据个数
+
+%ans =
+
+%    0.8894  决策树的算法的分类结果
+
+% 370+611   bayes+决策树一共分类正确的数据个数
+
+%ans =
+
+%   981  bayes+决策树一共分类正确的数据个数
+
+% 981/1027   1027是测试养的总个数
+
+%ans =
+
+%    0.9552   最后的测试分类准确率
+
+
+
+ %treedisp(predict)  显示命令
+  
+
